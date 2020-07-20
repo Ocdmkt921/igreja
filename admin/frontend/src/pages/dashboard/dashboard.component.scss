@@ -1,16 +1,23 @@
 mat-grid-tile {    
     .mat-card {
         width: 85%;
-        height: 75%;
+        height: auto;
         background-color: #0099CC;
         color: white;
         .mat-card-content {
             display: flex;
             flex-direction: row;
             align-items: center;
-            justify-content: center;
+            justify-content: space-evenly;
             .data-info {
-                font-size: 50px;
+                text-align: center;
+                * {
+                    display: block;
+                }
+            }
+            .mat-display-4 {
+                font-size: 80px;
+                margin-bottom: 0px;
             }
         }
     }
