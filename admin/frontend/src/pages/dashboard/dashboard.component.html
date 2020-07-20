@@ -1,0 +1,39 @@
+<mat-progress-bar color="primary" mode="indeterminate" *ngIf="submiting"></mat-progress-bar>
+<div class="content">
+  
+  <h2 class="mat-h2">Cultos de {{getWeekday()}}</h2>
+  <div class="controls">
+    <button mat-raised-button color="primary" (click)="openEditSchedule()">Adicionar culto</button>
+  </div>
+  <mat-divider></mat-divider>
+
+  <mat-grid-list cols="3" rowHeight="3:2">
+
+    <ng-container *ngFor="let event of schedules?.events">    
+
+      <mat-grid-tile>
+
+        <mat-card class="mat-elevation-z5">
+          <mat-card-header>
+            <mat-card-title>
+              Culto às {{ event.timeAt }}
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <span class="data-info">
+              {{ event.capacity }}
+            </span>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button>Ver check-in</button>
+            <button mat-button>Detalhes</button>            
+          </mat-card-actions>
+        </mat-card>
+        
+      </mat-grid-tile>
+
+    </ng-container>
+    
+  </mat-grid-list>
+
+</div>

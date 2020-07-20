@@ -1,0 +1,79 @@
+<h2 mat-dialog-title>Editar culto</h2>
+<!--<mat-progress-bar mode="indeterminate" color="primary"></mat-progress-bar>-->
+<mat-dialog-content>
+
+    <div class="loading" *ngIf="request?.submiting">
+        <mat-spinner diameter="40"></mat-spinner>
+    </div>
+
+    <div class="form-conten" *ngIf="!request?.submiting">
+        <form [formGroup]="form" (submit)="onSubmitForm()">
+            <div class="row">
+                <mat-form-field>
+                    <input type="time" matInput placeholder="Horario do culto" formControlName="timeAt"/>
+                </mat-form-field>
+                <mat-form-field>
+                    <input type="number" matInput placeholder="Quantidades de pessoas" formControlName="capacity"/>
+                </mat-form-field>
+            </div>
+
+            <div class="row">
+                <mat-slide-toggle color="primary" formControlName="exceptDaysActive">Adicionar dias de exceção</mat-slide-toggle>
+            </div>
+
+            <ng-container *ngIf="form.get('exceptDaysActive').value">            
+                <br/>
+                <span class="mat-caption helper">
+                    Adicione dias que não ocorrerá culto nesse dia da semana
+                </span>
+
+                <ng-container formArrayName="exceptDays">
+
+                    <div class="row half" *ngFor="let weekday of exceptDaysControls; let i = index">
+
+                        <mat-form-field [formGroupName]="i">
+                            <input type="text" matInput placeholder="Adicionar dia de exceção"
+                                formControlName="day"
+                                [matDatepickerFilter]="dateFilter"
+                                [matDatepicker]="picker"/>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+
+                        <button type="button" color="accent" mat-icon-button
+                            type="button"
+                            (click)="removeExceptDayControl(i)"
+                            *ngIf="exceptDaysControls.length - 1 > i">
+                            <mat-icon>close</mat-icon>
+                        </button>
+
+                        <button type="button" color="primary" mat-icon-button
+                            type="button"
+                            (click)="addExceptDayControl()"
+                            *ngIf="exceptDaysControls.length - 1 === i">
+                            <mat-icon>add</mat-icon>
+                        </button>
+
+                    </div>                
+
+                </ng-container>
+
+            </ng-container>
+            <br/>
+            <div class="row">
+                <mat-slide-toggle color="primary" formControlName="active">Ativo</mat-slide-toggle>
+            </div>
+
+            <br/>
+            <div class="actions">
+                <button mat-raised-button type="submit" color="primary">Salvar</button>
+            </div>
+
+        </form>
+    </div>
+    
+
+</mat-dialog-content>
+<mat-dialog-actions *ngIf="!request?.submiting">
+    <button mat-dialog-close color="accent" mat-stroked-button>Fechar</button>
+</mat-dialog-actions>

@@ -1,0 +1,46 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <!--<mat-toolbar>Dias da semana</mat-toolbar>-->
+    <div class="cover iadst-background">
+      <img src="./assets/images/logo-iadst.png" alt="">
+    </div>
+    <mat-nav-list *ngIf="weekdays.length">
+      <h3 matSubheader>Dias da semana</h3>
+      <ng-container *ngFor="let day of weekdays">
+        <a mat-list-item [routerLink]="[ '/', 'day', day.weekday ]" routerLinkActive="active">{{weekdayDef[day.weekday]}}</a>
+      </ng-container>
+      <mat-divider></mat-divider>
+      <a mat-list-item href="#">
+        <mat-icon>add</mat-icon>
+        Adicionar dia
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar class="iadst-background">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>Gerênciar cultos</span>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+    <!--<ng-container *ngIf="currentDay !== null; else unselectedDay">
+      <router-outlet></router-outlet>
+    </ng-container>   
+
+    <ng-template #unselectedDay>
+      <div class="empty">
+        <span class="mat-body-2">Selecione um dia da semana para ver os cultos</span>
+      </div>
+    </ng-template>-->
+    
+  </mat-sidenav-content>
+</mat-sidenav-container>

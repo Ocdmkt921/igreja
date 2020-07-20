@@ -1,0 +1,48 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.iadst-background {
+    background-color: #0D3A61;
+    &.mat-toolbar {
+        color: white;
+    }
+}
+.content {
+    padding: 10px;
+    .controls {
+        padding: 5px;
+        button {
+            margin: 10px 0px 10px 0px;
+        }
+    }
+}
+form {
+    .row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        &.half {
+            width: 50%
+        }
+        mat-form-field {
+            width: 100%;
+        }
+    }
+}
+.empty {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    &.full {
+        height: 100%;
+    }
+}
+.helper {
+    padding: 5px;
+    background-color: #DDD;
+    display: block;
+}

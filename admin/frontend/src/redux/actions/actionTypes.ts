@@ -1,0 +1,16 @@
+export enum requestActions {
+    REQUEST = 'REQUEST_ACTION'
+}
+
+export enum scheduleActions {
+    ADD_ITEM = 'ADD_ITEM_ACTION',
+    DELETE_ITEM = 'DELETE_ITEM_ACTION',
+    GET_ITEMS = 'GET_ITEM_ACTION',
+    SET_ITEMS = 'SET_ITEM_ACTION',
+    SET_CURRENT_WEEKDAY = 'SET_CURRENT_WEEKDAY_ACTION'
+}
+
+export enum weekdaysActions {
+    GET_WEEKDAYS = 'GET_WEEKDAYS_ACTION',
+    SET_WEEKDAYS = 'SET_WEEKDAYS_ACTION'    
+}
